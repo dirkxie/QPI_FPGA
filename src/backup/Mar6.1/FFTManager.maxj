@@ -1,0 +1,87 @@
+/***
+    The manager for this design just streams data from CPU to DFE and back via PCI-E.
+*/
+import com.maxeler.maxcompiler.v2.managers.engine_interfaces.CPUTypes;
+import com.maxeler.maxcompiler.v2.managers.engine_interfaces.EngineInterface;
+import com.maxeler.maxcompiler.v2.managers.engine_interfaces.InterfaceParam;
+import com.maxeler.maxcompiler.v2.managers.custom.CustomManager;
+import com.maxeler.maxcompiler.v2.managers.custom.blocks.KernelBlock;
+import com.maxeler.maxcompiler.v2.build.EngineParameters;
+
+public class FFTManager extends CustomManager{
+
+    private static final int size_x = 256;
+    private static final int size_y = 256;
+    private static final int Kernel_Num0 = 0;
+    private static final int Kernel_Num1 = 1;
+    private static final int Kernel_Num2 = 2;
+    private static final int Kernel_Num3 = 3;
+
+    private static final int Rotator_Num1 = 1;
+    private static final int Rotator_Num2 = 2;
+    private static final int overhead = size_x * 4 + 2;
+    FFTManager(EngineParameters ep) {
+        super(ep);
+        
+        //Kernel declaration
+        KernelBlock FFT16_1 = addKernel(new FFT16Kernel1(makeKernelParameters("FFT16Kernel_1"), size_x, size_y, Kernel_Num0));
+        KernelBlock Rotator1 = addKernel(new RotatorKernel(makeKernelParameters("Rotator1"), Rotator_Num1));
+        KernelBlock FFT16_2 = addKernel(new FFT16Kernel2(makeKernelParameters("FFT16Kernel_2"), size_x, size_y, Kernel_Num1));
+        KernelBlock FFT2DRAM = addKernel(new FFT2DRAM(makeKernelParameters("FFT2DRAM")));
+        KernelBlock FFT16_3 = addKernel(new FFT16Kernel3(makeKernelParameters("FFT16Kernel_3"), size_x, size_y, Kernel_Num2));
+        KernelBlock Rotator2 = addKernel(new RotatorKernel(makeKernelParameters("Rotator2"), Rotator_Num2));
+        KernelBlock FFT16_4 = addKernel(new FFT16Kernel2(makeKernelParameters("FFT16Kernel_4"), size_x, size_y, Kernel_Num3));
+
+        //Constant
+        addMaxFileConstant("size_x", size_x);
+        addMaxFileConstant("size_y", size_y);
+        
+        
+        //stream declaration
+        //1st FFT 256
+        FFT16_1.getInput("original") <== addStreamFromCPU("original");
+        Rotator1.getInput("DIN") <== FFT16_1.getOutput("Stage1_out");
+        Rotator1.getInput("Rotator_Enable") <== FFT16_1.getOutput("Rotator_Enable");
+        FFT16_2.getInput("original") <== Rotator1.getOutput("DO");
+        FFT16_2.getInput("FFT_Stage2_Enable") <== Rotator1.getOutput("FFT_Stage2_Enable");
+        //2D RAM
+        FFT2DRAM.getInput("DIN") <== FFT16_2.getOutput("Stage_out");
+        FFT2DRAM.getInput("FFT2DRAM_Enable") <== FFT16_2.getOutput("FFT2DRAM_Enable");
+        //2nd FFT 256
+        FFT16_3.getInput("original") <== FFT2DRAM.getOutput("Stage_out");
+        FFT16_3.getInput("FFT_Stage_Enable") <== FFT2DRAM.getOutput("Next_Enable");
+        Rotator2.getInput("DIN") <== FFT16_3.getOutput("Stage_out");
+        Rotator2.getInput("Rotator_Enable") <== FFT16_3.getOutput("Next_Enable");
+        FFT16_4.getInput("original") <== Rotator2.getOutput("DO");
+        FFT16_4.getInput("FFT_Stage2_Enable") <== Rotator2.getOutput("FFT_Stage2_Enable");
+    }
+
+    private static EngineInterface interfaceDefault() {
+        EngineInterface engine_interface = new EngineInterface();
+        CPUTypes type = CPUTypes.INT32;
+        int INT_size = type.sizeInBytes();
+        int FLOAT_size = CPUTypes.FLOAT.sizeInBytes();
+        InterfaceParam N = engine_interface.addParam("N", CPUTypes.INT);
+        InterfaceParam sizeBytes = N * FLOAT_size;
+
+        
+        engine_interface.setTicks("FFT16Kernel_1", N);
+        engine_interface.setTicks("FFT16Kernel_2", N);
+        engine_interface.setTicks("Rotator1", N);
+        engine_interface.setStream("original", type, sizeBytes);
+        engine_interface.setTicks("FFT2DRAM", N);
+        engine_interface.setTicks("FFT16Kernel_3", N);
+        engine_interface.setTicks("Rotator2", N);
+        engine_interface.setTicks("FFT16Kernel_4", N);
+        //engine_interface.setStream("m70", type, sizeBytes);
+        //engine_interface.setStream("DIN", type, sizeBytes);
+        //engine_interface.setStream("FFTOUT", type, sizeBytes);
+        return engine_interface;
+    }
+
+    public static void main(String[] args) {
+        FFTManager manager = new FFTManager(new EngineParameters(args));
+        manager.createSLiCinterface(interfaceDefault());
+        manager.build();
+    }
+}
