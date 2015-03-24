@@ -1,0 +1,266 @@
+
+Total resource usage
+-----------------------------------------------------------------
+    LUTs     FFs   BRAMs    DSPs                            
+  297600  595200    1064    2016  total available resources for FPGA
+  183066  219538     792     204  total resources used      
+  61.51%  36.88%  74.39%  10.12%  % of available
+  174300  210132     744     204  used by kernels           
+  58.57%  35.30%  69.88%  10.12%  % of available
+    8141    9286      48       0  used by manager           
+   2.74%   1.56%   4.51%   0.00%  % of available
+     570     120       0       0  stray resources           
+   0.19%   0.02%   0.00%   0.00%  % of available
+
+High level manager breakdown aggregated by type
+-----------------------------------------------------------------
+    LUTs     FFs   BRAMs    DSPs  Type                      Occurrences
+    1763    2628      12       0  AsymmetricIFPGALink       1
+      26      36       1       0  ChecksumMappedDRP         1
+     157     144       0       0  DualAspectMux             4
+      66     108       0       0  DualAspectReg             1
+    2650    3002      32       0  Fifo                      35
+      36      40       1       0  InterFPGALinkAdapter      1
+  174300  210132     744     204  Kernel                    16
+     319      56       0       0  MappedElementSwitch       1
+     339     590       3       0  MappedMemoriesController  1
+     102     104       0       0  MappedRegistersControlle  1
+     176     190       0       0  PerfMonitor               1
+      10      13       0       0  ResetControl              1
+      70      95       0       0  SanityBlock               1
+      77      96       0       0  SignalForwardingAdapter   1
+       1       2       0       0  StreamPullPushAdapter     1
+      11      19       0       0  SystemMonitor             1
+    2243    2059       0       0  Virtex6Aurora             1
+      95     104       0       0  XilinxClockGenerator      1
+      33       0       0       0  Other InterFPGA           --
+      22       0       0       0  Other MappedElements      --
+       0       0       0       0  Other PCIe                --
+
+Kernel breakdown
+-----------------------------------------------------------------
+    LUTs     FFs   BRAMs    DSPs  category
+  174300  210132     744     204  total for all kernels
+  58.57%  35.30%  69.88%  10.12%  % of total available
+
+Totals for each kernel
+    LUTs     FFs   BRAMs    DSPs  Kernel name
+   17061   20217       2       0  FFT16Kernel_1 (total)
+   5.73%   3.40%   0.14%   0.00%  % of total available
+   14100   13888       2       0  FFT16Kernel_1 (user)
+   4.74%   2.33%   0.14%   0.00%  % of total available
+    2693    5102       0       0  FFT16Kernel_1 (scheduling)
+   0.90%   0.86%   0.00%   0.00%  % of total available
+     268    1227       0       0  FFT16Kernel_1 (other Kernel resources)
+   0.09%   0.21%   0.00%   0.00%  % of total available
+   16778   19898       3       0  FFT16Kernel_2 (total)
+   5.64%   3.34%   0.28%   0.00%  % of total available
+   13712   13439       3       0  FFT16Kernel_2 (user)
+   4.61%   2.26%   0.28%   0.00%  % of total available
+    2724    5210       0       0  FFT16Kernel_2 (scheduling)
+   0.92%   0.88%   0.00%   0.00%  % of total available
+     342    1249       0       0  FFT16Kernel_2 (other Kernel resources)
+   0.11%   0.21%   0.00%   0.00%  % of total available
+   17092   20217       2       0  FFT16Kernel_3 (total)
+   5.74%   3.40%   0.14%   0.00%  % of total available
+   14119   13888       2       0  FFT16Kernel_3 (user)
+   4.74%   2.33%   0.14%   0.00%  % of total available
+    2741    5102       0       0  FFT16Kernel_3 (scheduling)
+   0.92%   0.86%   0.00%   0.00%  % of total available
+     232    1227       0       0  FFT16Kernel_3 (other Kernel resources)
+   0.08%   0.21%   0.00%   0.00%  % of total available
+   16632   19898       3       0  FFT16Kernel_4 (total)
+   5.59%   3.34%   0.28%   0.00%  % of total available
+   13758   13439       3       0  FFT16Kernel_4 (user)
+   4.62%   2.26%   0.28%   0.00%  % of total available
+    2557    5210       0       0  FFT16Kernel_4 (scheduling)
+   0.86%   0.88%   0.00%   0.00%  % of total available
+     317    1249       0       0  FFT16Kernel_4 (other Kernel resources)
+   0.11%   0.21%   0.00%   0.00%  % of total available
+    2021    1819     228       0  FFT2DRAM_1 (total)
+   0.68%   0.31%  21.43%   0.00%  % of total available
+    1824    1360     228       0  FFT2DRAM_1 (user)
+   0.61%   0.23%  21.43%   0.00%  % of total available
+      13       9       0       0  FFT2DRAM_1 (scheduling)
+   0.00%   0.00%   0.00%   0.00%  % of total available
+     184     450       0       0  FFT2DRAM_1 (other Kernel resources)
+   0.06%   0.08%   0.00%   0.00%  % of total available
+    2450    2440     228       0  FFT2DRAM_2 (total)
+   0.82%   0.41%  21.43%   0.00%  % of total available
+    2208    1950     228       0  FFT2DRAM_2 (user)
+   0.74%   0.33%  21.43%   0.00%  % of total available
+       9       9       0       0  FFT2DRAM_2 (scheduling)
+   0.00%   0.00%   0.00%   0.00%  % of total available
+     233     481       0       0  FFT2DRAM_2 (other Kernel resources)
+   0.08%   0.08%   0.00%   0.00%  % of total available
+   16986   19501       2       0  IFFT16Kernel_1 (total)
+   5.71%   3.28%   0.14%   0.00%  % of total available
+   13877   13426       2       0  IFFT16Kernel_1 (user)
+   4.66%   2.26%   0.14%   0.00%  % of total available
+    2778    4859       0       0  IFFT16Kernel_1 (scheduling)
+   0.93%   0.82%   0.00%   0.00%  % of total available
+     331    1216       0       0  IFFT16Kernel_1 (other Kernel resources)
+   0.11%   0.20%   0.00%   0.00%  % of total available
+   16941   19934       3       0  IFFT16Kernel_2 (total)
+   5.69%   3.35%   0.28%   0.00%  % of total available
+   13938   13703       3       0  IFFT16Kernel_2 (user)
+   4.68%   2.30%   0.28%   0.00%  % of total available
+    2676    4985       0       0  IFFT16Kernel_2 (scheduling)
+   0.90%   0.84%   0.00%   0.00%  % of total available
+     327    1246       0       0  IFFT16Kernel_2 (other Kernel resources)
+   0.11%   0.21%   0.00%   0.00%  % of total available
+   16928   19501       2       0  IFFT16Kernel_3 (total)
+   5.69%   3.28%   0.14%   0.00%  % of total available
+   13879   13426       2       0  IFFT16Kernel_3 (user)
+   4.66%   2.26%   0.14%   0.00%  % of total available
+    2739    4859       0       0  IFFT16Kernel_3 (scheduling)
+   0.92%   0.82%   0.00%   0.00%  % of total available
+     310    1216       0       0  IFFT16Kernel_3 (other Kernel resources)
+   0.10%   0.20%   0.00%   0.00%  % of total available
+   16664   19117       3       0  IFFT16Kernel_4 (total)
+   5.60%   3.21%   0.23%   0.00%  % of total available
+   13540   13023       3       0  IFFT16Kernel_4 (user)
+   4.55%   2.19%   0.23%   0.00%  % of total available
+    2763    4913       0       0  IFFT16Kernel_4 (scheduling)
+   0.93%   0.83%   0.00%   0.00%  % of total available
+     361    1181       0       0  IFFT16Kernel_4 (other Kernel resources)
+   0.12%   0.20%   0.00%   0.00%  % of total available
+    7346   12016       0      64  Phi_Compute (total)
+   2.47%   2.02%   0.00%   3.17%  % of total available
+    7113   11519       0      64  Phi_Compute (user)
+   2.39%   1.94%   0.00%   3.17%  % of total available
+       0       0       0       0  Phi_Compute (scheduling)
+   0.00%   0.00%   0.00%   0.00%  % of total available
+     233     497       0       0  Phi_Compute (other Kernel resources)
+   0.08%   0.08%   0.00%   0.00%  % of total available
+   20334   24893     266      12  QPI_SpaceDomain (total)
+   6.83%   4.18%  25.00%   0.60%  % of total available
+   16889   20202       7      12  QPI_SpaceDomain (user)
+   5.68%   3.39%   0.66%   0.60%  % of total available
+    2812    4070     259       0  QPI_SpaceDomain (scheduling)
+   0.94%   0.68%  24.34%   0.00%  % of total available
+     633     621       0       0  QPI_SpaceDomain (other Kernel resources)
+   0.21%   0.10%   0.00%   0.00%  % of total available
+    1766    2674       1      32  Rotator1 (total)
+   0.59%   0.45%   0.09%   1.59%  % of total available
+    1536    2193       1      32  Rotator1 (user)
+   0.52%   0.37%   0.09%   1.59%  % of total available
+       0       0       0       0  Rotator1 (scheduling)
+   0.00%   0.00%   0.00%   0.00%  % of total available
+     230     481       0       0  Rotator1 (other Kernel resources)
+   0.08%   0.08%   0.00%   0.00%  % of total available
+    1749    2669       1      32  Rotator2 (total)
+   0.59%   0.45%   0.09%   1.59%  % of total available
+    1519    2193       1      32  Rotator2 (user)
+   0.51%   0.37%   0.09%   1.59%  % of total available
+       0       0       0       0  Rotator2 (scheduling)
+   0.00%   0.00%   0.00%   0.00%  % of total available
+     230     476       0       0  Rotator2 (other Kernel resources)
+   0.08%   0.08%   0.00%   0.00%  % of total available
+    1787    2669       1      32  Rotator3 (total)
+   0.60%   0.45%   0.09%   1.59%  % of total available
+    1528    2193       1      32  Rotator3 (user)
+   0.51%   0.37%   0.09%   1.59%  % of total available
+       0       0       0       0  Rotator3 (scheduling)
+   0.00%   0.00%   0.00%   0.00%  % of total available
+     259     476       0       0  Rotator3 (other Kernel resources)
+   0.09%   0.08%   0.00%   0.00%  % of total available
+    1765    2669       1      32  Rotator4 (total)
+   0.59%   0.45%   0.09%   1.59%  % of total available
+    1511    2193       1      32  Rotator4 (user)
+   0.51%   0.37%   0.09%   1.59%  % of total available
+       0       0       0       0  Rotator4 (scheduling)
+   0.00%   0.00%   0.00%   0.00%  % of total available
+     254     476       0       0  Rotator4 (other Kernel resources)
+   0.09%   0.08%   0.00%   0.00%  % of total available
+
+
+Manager breakdown
+-----------------------------------------------------------------
+    LUTs     FFs   BRAMs    DSPs  Type                      Instance
+   17061   20217       2       0  Kernel                    FFT16Kernel_1
+   16778   19898       3       0  Kernel                    FFT16Kernel_2
+   17092   20217       2       0  Kernel                    FFT16Kernel_3
+   16632   19898       3       0  Kernel                    FFT16Kernel_4
+    2021    1819     228       0  Kernel                    FFT2DRAM_1
+    2450    2440     228       0  Kernel                    FFT2DRAM_2
+   16986   19501       2       0  Kernel                    IFFT16Kernel_1
+   16941   19934       3       0  Kernel                    IFFT16Kernel_2
+   16928   19501       2       0  Kernel                    IFFT16Kernel_3
+   16664   19117       3       0  Kernel                    IFFT16Kernel_4
+    7346   12016       0      64  Kernel                    Phi_Compute
+   20334   24893     266      12  Kernel                    QPI_SpaceDomain
+    1766    2674       1      32  Kernel                    Rotator1
+    1749    2669       1      32  Kernel                    Rotator2
+    1787    2669       1      32  Kernel                    Rotator3
+    1765    2669       1      32  Kernel                    Rotator4
+      78      86       1       0  Fifo                      Stream_102
+      74      86       1       0  Fifo                      Stream_106
+      69      78       1       0  Fifo                      Stream_108
+       1       2       0       0  StreamPullPushAdapter     Stream_110
+      39      36       0       0  DualAspectMux             Stream_16
+      39      36       0       0  DualAspectMux             Stream_19
+      40      36       0       0  DualAspectMux             Stream_22
+      39      36       0       0  DualAspectMux             Stream_25
+      71      86       1       0  Fifo                      Stream_28
+      76      86       1       0  Fifo                      Stream_30
+      77      86       2       0  Fifo                      Stream_32
+      83      86       1       0  Fifo                      Stream_34
+      74      86       2       0  Fifo                      Stream_36
+      78      86       1       0  Fifo                      Stream_38
+      73      86       2       0  Fifo                      Stream_40
+      73      86       1       0  Fifo                      Stream_42
+      71      86       1       0  Fifo                      Stream_44
+      74      86       1       0  Fifo                      Stream_46
+      74      86       2       0  Fifo                      Stream_48
+      77      86       1       0  Fifo                      Stream_50
+      79      86       2       0  Fifo                      Stream_52
+      77      86       1       0  Fifo                      Stream_54
+      80      86       2       0  Fifo                      Stream_56
+      76      86       1       0  Fifo                      Stream_58
+      79      86       2       0  Fifo                      Stream_60
+      72      86       1       0  Fifo                      Stream_62
+      75      86       2       0  Fifo                      Stream_64
+      76      86       1       0  Fifo                      Stream_66
+      77      86       2       0  Fifo                      Stream_68
+      75      86       1       0  Fifo                      Stream_70
+      75      86       2       0  Fifo                      Stream_72
+      70      86       1       0  Fifo                      Stream_74
+      77      86       2       0  Fifo                      Stream_76
+      81      86       1       0  Fifo                      Stream_78
+      80      86       2       0  Fifo                      Stream_80
+      73      86       1       0  Fifo                      Stream_82
+      74      86       2       0  Fifo                      Stream_84
+      84      86       1       0  Fifo                      Stream_86
+      66     108       0       0  DualAspectReg             Stream_89
+      73      86       1       0  Fifo                      Stream_94
+      75      86       1       0  Fifo                      Stream_98
+    2243    2059       0       0  Virtex6Aurora             aurora_INTERFPGA_LINK_i
+      36      40       1       0  InterFPGALinkAdapter      InterFPGALinkAdapter_ifpga_i
+     319      56       0       0  MappedElementSwitch       MappedElementSwitch_i
+     339     590       3       0  MappedMemoriesController  MappedMemoriesController_i
+     102     104       0       0  MappedRegistersControlle  MappedRegistersController_i
+     176     190       0       0  PerfMonitor               perfm
+      95     104       0       0  XilinxClockGenerator      stream_clock_gen
+      70      95       0       0  SanityBlock               SanityBlock_i
+      77      96       0       0  SignalForwardingAdapter   SignalForwardingAdapter_i
+      11      19       0       0  SystemMonitor             sysm
+    1763    2628      12       0  AsymmetricIFPGALink       asymmetric_interfpgalink_ifpga
+      26      36       1       0  ChecksumMappedDRP         checksum_mem_drp
+      10      13       0       0  ResetControl              reset_controller
+
+Source files annotation report
+-----------------------------------------------------------------
+
+% of total used for each file (note: multiple files may share the same resources)
+    LUTs     FFs   BRAMs    DSPs  filename
+  17.57%  16.68%   0.76%   0.00%  FFT16Kernel2.maxj
+  18.08%  16.99%   0.38%   0.00%  FFT16Kernel3.maxj
+   1.93%   1.20%  57.61%   0.00%  FFT2DRAM.maxj
+  17.67%  16.37%   0.69%   0.00%  IFFT16Kernel2.maxj
+  17.86%  16.35%   0.38%   0.00%  IFFT16Kernel3.maxj
+   3.74%   5.09%   0.00%  31.37%  PhiComputeKernel.maxj
+  10.63%  10.90%  33.61%   5.88%  QPIKernel.maxj
+  92.62%  89.44%  93.94% 100.00%  QPIManager.maxj
+   2.71%   3.37%   0.51%  62.75%  RotatorKernel.maxj
+  92.62%  89.44%  93.94% 100.00%  [ missing source files ]
