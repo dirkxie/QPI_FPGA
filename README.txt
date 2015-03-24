@@ -16,4 +16,4 @@
     100MHz
 
   Current throughputs:
-    
+    8000 images 6.07 seconds
