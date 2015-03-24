@@ -7,7 +7,8 @@
 *         Dept. of Electrical and Electronic Engineering         
 * 
 * Special Thanks to 
-*          Imperial College Custom Computing Group
+*         Custom Computing Group
+*         Imperial College London
 *
 *
 **********************************************************
