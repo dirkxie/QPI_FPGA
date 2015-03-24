@@ -41,12 +41,11 @@ public class QPIManager extends CustomManager{
     
     private static final int RAM2D_1 = 1;
     private static final int RAM2D_2 = 2;  
-    private static final int total_img = 5;
     QPIManager(EngineParameters ep) {
         super(ep);
         ////////// Kernel Declaration /////////
         //QPI_SpaceDomain
-        KernelBlock QPI_SpaceDomain = addKernel(new QPIKernel(makeKernelParameters("QPI_SpaceDomain"), total_img, size_x, size_y));
+        KernelBlock QPI_SpaceDomain = addKernel(new QPIKernel(makeKernelParameters("QPI_SpaceDomain"), size_x, size_y));
         //2D FFT 256 * 256 point
         
         KernelBlock FFT16_1 = addKernel(new FFT16Kernel3(makeKernelParameters("FFT16Kernel_1"), size_x, size_y, Kernel_Num0));
@@ -201,7 +200,6 @@ public class QPIManager extends CustomManager{
         */
         //addStreamToCPU("G") <== QPI_SpaceDomain.getOutput("G");
 
-        addMaxFileConstant("total_img", total_img);
         addMaxFileConstant("size_x", size_x);
         addMaxFileConstant("size_y", size_y);
     }
@@ -211,9 +209,10 @@ public class QPIManager extends CustomManager{
         CPUTypes type = CPUTypes.INT32;
         int INT_size = type.sizeInBytes();
         int FLOAT_size = CPUTypes.FLOAT.sizeInBytes();
-        InterfaceParam N = engine_interface.addParam("N", CPUTypes.INT);
+        InterfaceParam N = engine_interface.addParam("N", CPUTypes.INT32);
+        InterfaceParam num_img = engine_interface.addParam("num_img", CPUTypes.INT32);
         InterfaceParam sizeBytes = N * INT_size;
-        
+
         engine_interface.setStream("i1", CPUTypes.FLOAT, CPUTypes.FLOAT.sizeInBytes() * N);
         engine_interface.setStream("i2", CPUTypes.FLOAT, CPUTypes.FLOAT.sizeInBytes() * N);
         engine_interface.setStream("i3", CPUTypes.FLOAT, CPUTypes.FLOAT.sizeInBytes() * N);
@@ -255,7 +254,7 @@ public class QPIManager extends CustomManager{
         //engine_interface.setStream("theta_y", CPUTypes.FLOAT, FLOAT_size * size_x * size_y);
         //engine_interface.setStream("dphi_y", CPUTypes.FLOAT, FLOAT_size * size_x * size_y);
         //engine_interface.setStream("G", CPUTypes.FLOAT, FLOAT_size * size_x * size_y * 2);
-        engine_interface.setStream("phi", CPUTypes.FLOAT, FLOAT_size * size_x * size_y);
+        engine_interface.setStream("phi", CPUTypes.FLOAT, FLOAT_size * size_x * size_y * num_img);
         return engine_interface;
     }
 

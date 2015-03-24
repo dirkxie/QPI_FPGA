@@ -30,7 +30,7 @@ void print_matrix(float *mat, int size) {
 int main(void)
 {
 
-  int img_num = 1;
+  int img_num = 8000;
   int overhead = 131328 + 286 + 3 + 542 + 65536 + 286 + 3 + 542 + 286 + 3 + 542 + 65536 + 286 + 3 + 542; //+ 286 + 3 + 542 + 65536 + 286 + 3 + 542; //+3 to make it multiple of 16 bits
   //int overhead = 0;
   /*
@@ -60,6 +60,7 @@ int main(void)
   IMG3_FilePtr = fopen(IMG3_Path, "r");
   IMG4_FilePtr = fopen(IMG4_Path, "r");
   
+  printf("Reading images matrix from files.\n"); 
   if (IMG1_FilePtr == NULL | IMG2_FilePtr == NULL | IMG3_FilePtr == NULL | IMG4_FilePtr == NULL) {
       printf("Error opening image file!\n");
   }
@@ -109,6 +110,20 @@ int main(void)
   fclose(IMG3_FilePtr);
   fclose(IMG4_FilePtr);
 
+  printf("Duplicating images for testing.\n");
+  //replicate img1, 2, 3, 4 for test
+  for (int img_count = 1; img_count < img_num; img_count++)
+    for (int i = 0; i < 256; i++)
+      for (int j = 0; j < 256; j++)
+      {
+        i1[65536*img_count + i*256 + j] = i1[i*256 + j];
+        i2[65536*img_count + i*256 + j] = i2[i*256 + j];
+        i3[65536*img_count + i*256 + j] = i3[i*256 + j];
+        i4[65536*img_count + i*256 + j] = i4[i*256 + j];
+      }
+
+
+
   /*
   float *i1_bgs = malloc (sizeof(float) * inSize * inSize);
   float *i1_bgs_positive = malloc (sizeof(float) * inSize * inSize);  
@@ -150,8 +165,8 @@ int main(void)
   float *dphi_y = malloc (sizeof(float) * inSize * inSize);
   float *G = malloc(sizeof(float) * inSize * inSize *2);
   */
-  //float *phi = (float *) malloc(sizeof(float) * inSize * inSize * img_num);
-  float *phi = (float *) malloc(sizeof(float) * inSize * inSize);
+  float *phi = (float *) malloc(sizeof(float) * inSize * inSize * img_num);
+  //float *phi = (float *) malloc(sizeof(float) * inSize * inSize);
   /*
   memset(i1, 0, sizeof(int) * inSize * (inSize+overhead));
   memset(i2, 0, sizeof(int) * inSize * (inSize+overhead));
@@ -246,11 +261,12 @@ int main(void)
       );
    */
   //QPI for assembly
+    printf("Number of images = %d\n", img_num);
     struct timeval time0;
     struct timeval time1;
     gettimeofday(&time0, NULL);
   
-    QPI((inSize * inSize * img_num + overhead), i1, i2, i3, i4, phi);
+    QPI((inSize * inSize * img_num + overhead), img_num, i1, i2, i3, i4, phi);
 
     gettimeofday(&time1, NULL);
     printf("Total DFE Time = %f\n", (time1.tv_sec - time0.tv_sec)+(time1.tv_usec - time0.tv_usec)*1e-6);
@@ -371,14 +387,14 @@ int main(void)
     printf("\n");
   }
   */
-  
+  /*  
   printf("\nphi: \n\n");
   for(int i = 0; i < inSize; ++i) {
     for (int j = 0; j < inSize; ++j)
-      printf("%f ", phi[i * inSize + j]);
+      printf("%f ", phi[65536 + i * inSize + j]);
     printf("\n");
   }
-  
+  */
 
   //printf("Shutting down.\n");
   free(i1);

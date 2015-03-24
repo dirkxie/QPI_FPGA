@@ -19,7 +19,7 @@ import com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEFix.SignMode;
 
 class QPIKernel extends Kernel {
 
-    protected QPIKernel(KernelParameters parameters, int total_img, int size_x, int size_y) {
+    protected QPIKernel(KernelParameters parameters, int size_x, int size_y) {
         super(parameters);
     //pre-calculated values
     int size_MinRAM = 2;
