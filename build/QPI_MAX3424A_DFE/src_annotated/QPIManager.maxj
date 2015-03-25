@@ -1,8 +1,8 @@
     LUTs     FFs   BRAMs    DSPs : QPIManager.maxj
-  169556  196363   743.5     204 : resources used by this file
-  56.97%  32.99%  69.88%  10.12% : % of available
-  92.62%  89.44%  93.94% 100.00% : % of total used
-  97.28%  93.45% 100.00% 100.00% : % of user resources
+  162907  196496   750.0     204 : resources used by this file
+  54.74%  33.01%  70.49%  10.12% : % of available
+  92.78%  89.45%  93.98% 100.00% : % of total used
+  97.59%  93.45% 100.00% 100.00% : % of user resources
 
                                  : /***
                                  :     The manager for this design just streams data from CPU to DFE and back via PCI-E.
@@ -51,43 +51,43 @@
                                  :         super(ep);
                                  :         ////////// Kernel Declaration /////////
                                  :         //QPI_SpaceDomain
-   19701   24272   266.0      12 :         KernelBlock QPI_SpaceDomain = addKernel(new QPIKernel(makeKernelParameters("QPI_SpaceDomain"), size_x, size_y));
+   16731   24405   272.5      12 :         KernelBlock QPI_SpaceDomain = addKernel(new QPIKernel(makeKernelParameters("QPI_SpaceDomain"), size_x, size_y));
                                  :         //2D FFT 256 * 256 point
                                  :         
-   16793   18990     1.5       0 :         KernelBlock FFT16_1 = addKernel(new FFT16Kernel3(makeKernelParameters("FFT16Kernel_1"), size_x, size_y, Kernel_Num0));
+   16445   18990     1.5       0 :         KernelBlock FFT16_1 = addKernel(new FFT16Kernel3(makeKernelParameters("FFT16Kernel_1"), size_x, size_y, Kernel_Num0));
                                  :                 
-    1536    2193     1.0      32 :         KernelBlock Rotator1 = addKernel(new RotatorKernel(makeKernelParameters("Rotator1"), Rotator_Num1, FFTorIFFT_1));
+    1472    2193     1.0      32 :         KernelBlock Rotator1 = addKernel(new RotatorKernel(makeKernelParameters("Rotator1"), Rotator_Num1, FFTorIFFT_1));
                                  : 
-   16436   18649     3.0       0 :         KernelBlock FFT16_2 = addKernel(new FFT16Kernel2(makeKernelParameters("FFT16Kernel_2"), size_x, size_y, Kernel_Num1));
+   15897   18649     3.0       0 :         KernelBlock FFT16_2 = addKernel(new FFT16Kernel2(makeKernelParameters("FFT16Kernel_2"), size_x, size_y, Kernel_Num1));
                                  :         
-    1837    1369   228.0       0 :         KernelBlock FFT2DRAM_1 = addKernel(new FFT2DRAM(makeKernelParameters("FFT2DRAM_1"), RAM2D_1));
+    1842    1369   228.0       0 :         KernelBlock FFT2DRAM_1 = addKernel(new FFT2DRAM(makeKernelParameters("FFT2DRAM_1"), RAM2D_1));
                                  :         
-   16860   18990     1.5       0 :         KernelBlock FFT16_3 = addKernel(new FFT16Kernel3(makeKernelParameters("FFT16Kernel_3"), size_x, size_y, Kernel_Num2));
+   16429   18990     1.5       0 :         KernelBlock FFT16_3 = addKernel(new FFT16Kernel3(makeKernelParameters("FFT16Kernel_3"), size_x, size_y, Kernel_Num2));
                                  :         
-    1519    2193     1.0      32 :         KernelBlock Rotator2 = addKernel(new RotatorKernel(makeKernelParameters("Rotator2"), Rotator_Num2, FFTorIFFT_1));
+    1521    2193     1.0      32 :         KernelBlock Rotator2 = addKernel(new RotatorKernel(makeKernelParameters("Rotator2"), Rotator_Num2, FFTorIFFT_1));
                                  :         
-   16315   18649     3.0       0 :         KernelBlock FFT16_4 = addKernel(new FFT16Kernel2(makeKernelParameters("FFT16Kernel_4"), size_x, size_y, Kernel_Num3));
+   15853   18649     3.0       0 :         KernelBlock FFT16_4 = addKernel(new FFT16Kernel2(makeKernelParameters("FFT16Kernel_4"), size_x, size_y, Kernel_Num3));
                                  : 
                                  :         //FFTShift and Phi Compute
                                  :         //KernelBlock FFTShift_1 = addKernel(new FFTShiftKernel(makeKernelParameters("FFTShift_1"), FFTShift_Num1));        
                                  :         
-    7113   11519     0.0      64 :         KernelBlock Phi_Compute = addKernel(new PhiComputeKernel(makeKernelParameters("Phi_Compute")));
+    7191   11519     0.0      64 :         KernelBlock Phi_Compute = addKernel(new PhiComputeKernel(makeKernelParameters("Phi_Compute")));
                                  :         //KernelBlock FFTShift_2 = addKernel(new FFTShiftKernel(makeKernelParameters("FFTShift_2"), FFTShift_Num2)); 
                                  :          
                                  :         //IFFT 256 * 256
-   16655   18285     1.5       0 :         KernelBlock IFFT16_1 = addKernel(new IFFT16Kernel3(makeKernelParameters("IFFT16Kernel_1"), size_x, size_y, Kernel_Num0));
+   16092   18285     1.5       0 :         KernelBlock IFFT16_1 = addKernel(new IFFT16Kernel3(makeKernelParameters("IFFT16Kernel_1"), size_x, size_y, Kernel_Num0));
                                  :         
-    1528    2193     1.0      32 :         KernelBlock Rotator3 = addKernel(new RotatorKernel(makeKernelParameters("Rotator3"), Rotator_Num3, FFTorIFFT_0));
+    1476    2193     1.0      32 :         KernelBlock Rotator3 = addKernel(new RotatorKernel(makeKernelParameters("Rotator3"), Rotator_Num3, FFTorIFFT_0));
                                  :         
-   16614   18688     3.0       0 :         KernelBlock IFFT16_2 = addKernel(new IFFT16Kernel2(makeKernelParameters("IFFT16Kernel_2"), size_x, size_y, Kernel_Num1));
+   16277   18688     3.0       0 :         KernelBlock IFFT16_2 = addKernel(new IFFT16Kernel2(makeKernelParameters("IFFT16Kernel_2"), size_x, size_y, Kernel_Num1));
                                  :          
-    2217    1959   228.0       0 :         KernelBlock FFT2DRAM_2 = addKernel(new FFT2DRAM(makeKernelParameters("FFT2DRAM_2"), RAM2D_2));
+    2300    1959   228.0       0 :         KernelBlock FFT2DRAM_2 = addKernel(new FFT2DRAM(makeKernelParameters("FFT2DRAM_2"), RAM2D_2));
                                  :          
-   16618   18285     1.5       0 :         KernelBlock IFFT16_3 = addKernel(new IFFT16Kernel3(makeKernelParameters("IFFT16Kernel_3"), size_x, size_y, Kernel_Num2));
+   15990   18285     1.5       0 :         KernelBlock IFFT16_3 = addKernel(new IFFT16Kernel3(makeKernelParameters("IFFT16Kernel_3"), size_x, size_y, Kernel_Num2));
                                  :         
-    1511    2193     1.0      32 :         KernelBlock Rotator4 = addKernel(new RotatorKernel(makeKernelParameters("Rotator4"), Rotator_Num4, FFTorIFFT_0));
+    1482    2193     1.0      32 :         KernelBlock Rotator4 = addKernel(new RotatorKernel(makeKernelParameters("Rotator4"), Rotator_Num4, FFTorIFFT_0));
                                  :         
-   16303   17936     2.5       0 :         KernelBlock IFFT16_4 = addKernel(new IFFT16Kernel2(makeKernelParameters("IFFT16Kernel_4"), size_x, size_y, Kernel_Num3));
+   15909   17936     2.5       0 :         KernelBlock IFFT16_4 = addKernel(new IFFT16Kernel2(makeKernelParameters("IFFT16Kernel_4"), size_x, size_y, Kernel_Num3));
                                  :         
                                  : 
                                  :         ////////// Stream Declaration ////////
@@ -265,7 +265,7 @@
                                  :     }
                                  : 
                                  :     public static void main(String[] args) {
-  169556  196363   743.5     204 :         QPIManager manager = new QPIManager(new EngineParameters(args));
+  162907  196496   750.0     204 :         QPIManager manager = new QPIManager(new EngineParameters(args));
                                  :         BuildConfig config = new BuildConfig(Level.FULL_BUILD);
                                  :         config.setBuildEffort(Effort.HIGH);
                                  :         config.setEnableTimingAnalysis(true);

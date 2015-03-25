@@ -1,8 +1,8 @@
     LUTs     FFs   BRAMs    DSPs : RotatorKernel.maxj
-    4953    7400     4.0     128 : resources used by this file
-   1.66%   1.24%   0.38%   6.35% : % of available
-   2.71%   3.37%   0.51%  62.75% : % of total used
-   2.84%   3.52%   0.54%  62.75% : % of user resources
+    4853    7400     4.0     128 : resources used by this file
+   1.63%   1.24%   0.38%   6.35% : % of available
+   2.76%   3.37%   0.50%  62.75% : % of total used
+   2.91%   3.52%   0.53%  62.75% : % of user resources
 
                                  : import com.maxeler.maxcompiler.v2.kernelcompiler.Kernel;
                                  : import com.maxeler.maxcompiler.v2.kernelcompiler.KernelParameters;
@@ -34,7 +34,7 @@
                                  :           DFEComplexType Comp_Type = new DFEComplexType(type_fix0);
                                  : 
                                  :           //complex input stream
-      61     360     0.0       0 :           DFEComplex DIN = io.input("DIN", Comp_Type);
+      55     360     0.0       0 :           DFEComplex DIN = io.input("DIN", Comp_Type);
        4       4     0.0       0 :           DFEVar Rotator_Enable = io.input("Rotator_Enable", dfeFix(1, 0, SignMode.UNSIGNED));
                                  : 
                                  :           //optimization DSP
@@ -44,7 +44,7 @@
                                  :           //overall counter
                                  :           Count.Params all_param = control.count.makeParams(32)
                                  :                                                 .withEnable(Rotator_Enable);
-     298     396     0.0       0 :           DFEVar all_count = control.count.makeCounter(all_param).getCount();
+     270     396     0.0       0 :           DFEVar all_count = control.count.makeCounter(all_param).getCount();
                                  : 
                                  :           Count.Params addrw_param = control.count.makeParams(8)
                                  :                                   .withMax(256)
@@ -101,26 +101,26 @@
                                  : 
                                  :           DFEVar drd = stream.offset(DIN.getReal(), -1);          
                                  :           DFEVar did = stream.offset(DIN.getImaginary(), -1);
-     971    1180     0.0       0 :           DFEVar wrd = stream.offset(TwiddleCosR, -1).cast(type_fix0);
+     967    1180     0.0       0 :           DFEVar wrd = stream.offset(TwiddleCosR, -1).cast(type_fix0);
      970    1180     0.0       0 :           DFEVar wid = stream.offset(TwiddleSinR, -1).cast(type_fix0);
                                  : 
-     508     952     0.0      32 :           DFEVar drri = drd * wrd;
-     505     952     0.0      32 :           DFEVar diri = did * wrd;
-     515     952     0.0      32 :           DFEVar drii = drd * wid;
-     512     952     0.0      32 :           DFEVar diii = did * wid;
+     510     952     0.0      32 :           DFEVar drri = drd * wrd;
+     508     952     0.0      32 :           DFEVar diri = did * wrd;
+     512     952     0.0      32 :           DFEVar drii = drd * wid;
+     518     952     0.0      32 :           DFEVar diii = did * wid;
                                  :          
                                  :           DFEVar drr = stream.offset(drri, -1); 
                                  :           DFEVar dri = stream.offset(drii, -1);
                                  :           DFEVar dir = stream.offset(diri, -1);
                                  :           DFEVar dii = stream.offset(diii, -1);
-     249     180     0.0       0 :           DFEVar dwr = stream.offset(drr - dii, -1);
-     255     180     0.0       0 :           DFEVar dwi = stream.offset(dri + dir, -1);
+     224     180     0.0       0 :           DFEVar dwr = stream.offset(drr - dii, -1);
+     211     180     0.0       0 :           DFEVar dwi = stream.offset(dri + dir, -1);
                                  :           
                                  :           DFEComplex DO = Comp_Type.newInstance(this);
                                  :           DO.setReal(dwr);
                                  :           DO.setImaginary(dwi);
                                  :            
-      29       4     0.0       0 :           DFEVar FFT_Stage2_Enable = all_count >= 3;
+      28       4     0.0       0 :           DFEVar FFT_Stage2_Enable = all_count >= 3;
                                  :           optimization.popDSPFactor();
                                  : 
                                  :           if (Rotator_Num ==1) {
