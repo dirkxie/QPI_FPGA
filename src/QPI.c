@@ -30,7 +30,7 @@ void print_matrix(float *mat, int size) {
 int main(void)
 {
 
-  int img_num = 8000;
+  int img_num = 1;
   int overhead = 131328 + 286 + 3 + 542 + 65536 + 286 + 3 + 542 + 286 + 3 + 542 + 65536 + 286 + 3 + 542; //+ 286 + 3 + 542 + 65536 + 286 + 3 + 542; //+3 to make it multiple of 16 bits
   //int overhead = 0;
   /*
@@ -387,14 +387,14 @@ int main(void)
     printf("\n");
   }
   */
-  /*  
+    
   printf("\nphi: \n\n");
   for(int i = 0; i < inSize; ++i) {
     for (int j = 0; j < inSize; ++j)
-      printf("%f ", phi[65536 + i * inSize + j]);
+      printf("%f ", phi[65536*(img_num-1) + i * inSize + j]);
     printf("\n");
   }
-  */
+  
 
   //printf("Shutting down.\n");
   free(i1);
