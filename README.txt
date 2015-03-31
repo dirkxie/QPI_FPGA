@@ -24,7 +24,7 @@
     150MHz
 
   Current throughputs on FPGA:
-    120000 images in ~18 seconds
+    120000 images in ~67 seconds
   
   CPU version on E5 2640 6 cores, 6 threads, HT turned off:
-    120000 images in ~108 seconds
+    120000 images in ~420 seconds
