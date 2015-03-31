@@ -13,15 +13,18 @@
 *
 **********************************************************
   This is the maxeler FPGA accelerated version of Quantitative Phase Image Processing.
+  Image size:
+    256 * 256
+  
   Current notices:
     Fixed point number is (30, 15) format now.
     Precision loss in critical modules.
   
   Current Clock Frequency:
-    100MHz
+    150MHz
 
-  Current throughputs:
-    8000 images in 6.07 seconds
+  Current throughputs on FPGA:
+    120000 images in ~18 seconds
   
-  Image size:
-    256 * 256
+  CPU version on E5 2640 6 cores, 6 threads, HT turned off:
+    120000 images in ~108 seconds
