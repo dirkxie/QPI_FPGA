@@ -1,10 +1,10 @@
 **********************************************************
-* README V1.0
+* README V1.1
 *
 * Quantitative Phase Image Processing (QPI)
 * Author: Junyi Xie
-*         University of Hong Kong
 *         Dept. of Electrical and Electronic Engineering         
+*         University of Hong Kong
 * 
 * Special Thanks to 
 *         Custom Computing Group
@@ -17,14 +17,17 @@
     256 * 256
   
   Current notices:
-    Fixed point number is (30, 15) format now.
+    Fixed point number is (25, 15) format now.
     Precision loss in critical modules.
   
   Current Clock Frequency:
     150MHz
 
   Current throughputs on FPGA:
-    120000 images in ~67 seconds
+    32-bit float input:
+      120000 images in ~67 seconds
+    16-bit signed integer input:
+      120000 images in ~60 seconds
   
   CPU version on E5 2640 6 cores, 6 threads, HT turned off:
     120000 images in ~420 seconds
