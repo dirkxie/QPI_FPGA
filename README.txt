@@ -18,7 +18,6 @@
   
   Current notices:
     Fixed point number is (25, 15) format now.
-    Precision loss in critical modules.
   
   Current Clock Frequency:
     150MHz
