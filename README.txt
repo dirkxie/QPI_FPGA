@@ -17,9 +17,9 @@
     256 * 256
   
   Current notices:
-    Fixed point number is (25, 15) format now.
-    This version has no SVM classifier and is implemented on Xilinx Virtex-6 FPGA.
+    This public version has no SVM classifier and is implemented on Xilinx Virtex-6 FPGA.
     Up-to-data version is implemented on Altera Stratix-V FPGA with SVM classifier.
+    Fixed point number is (25, 15) format now on Altera FPGA.
     Nvidia CUDA code of QPI algorithm will be uploaded to git repository later.
 
   Current Clock Frequency:
