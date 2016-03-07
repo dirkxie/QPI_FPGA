@@ -3,7 +3,7 @@
 *
 * Quantitative Phase Image Processing (QPI)
 * Author: Junyi Xie
-*         Dept. of Electrical and Electronic Engineering         
+*         Dept. of Electrical and Electronics Engineering         
 *         University of Hong Kong
 * 
 * Special Thanks to 
